@@ -100,9 +100,6 @@
    ```
    Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-5. **Run Quick One-Click Startup (Windows)**:
-   Double-click `run.bat` or `start.bat`.
-
 ---
 
 ## 🧪 Build & Verification
