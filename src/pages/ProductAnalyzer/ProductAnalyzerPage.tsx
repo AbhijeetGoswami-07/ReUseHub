@@ -125,13 +125,13 @@ export const ProductAnalyzerPage: React.FC = () => {
   // Initial category & query detection
   const initialTitle = searchParams.get('query') || searchParams.get('title') || '';
   const paramCat = searchParams.get('category') as AnalyzerCategory | null;
-  const initialCategory: AnalyzerCategory =
+  const initialCategory: AnalyzerCategory | '' =
     paramCat &&
     ['clothing', 'plastic', 'electronics', 'furniture', 'glass', 'paper', 'metal', 'household_items', 'other'].includes(
       paramCat
     )
       ? paramCat
-      : 'electronics';
+      : '';
 
   const {
     register,
@@ -144,8 +144,8 @@ export const ProductAnalyzerPage: React.FC = () => {
     resolver: zodResolver(analyzerSchema),
     defaultValues: {
       title: initialTitle,
-      category: initialCategory,
-      material: CATEGORY_DEFAULT_MATERIAL[initialCategory] || 'electronic_components',
+      category: (initialCategory as AnalyzerCategory) || ('' as any),
+      material: initialCategory ? CATEGORY_DEFAULT_MATERIAL[initialCategory] : ('' as any),
       condition: 'good',
       description: '',
       imageUrl: null,
@@ -204,6 +204,9 @@ export const ProductAnalyzerPage: React.FC = () => {
 
   // Get prioritized and contextualized material options for current category
   const dynamicMaterialOptions = React.useMemo(() => {
+    if (!selectedCategory || !CATEGORY_PRIORITY_MATERIALS[selectedCategory]) {
+      return materialOptions;
+    }
     const preferred = CATEGORY_PRIORITY_MATERIALS[selectedCategory] || [];
     const preferredSet = new Set(preferred);
     return [
@@ -216,7 +219,7 @@ export const ProductAnalyzerPage: React.FC = () => {
   React.useEffect(() => {
     if (selectedCategory && CATEGORY_DEFAULT_MATERIAL[selectedCategory]) {
       const validMaterials = CATEGORY_PRIORITY_MATERIALS[selectedCategory] || [];
-      if (!validMaterials.includes(selectedMaterial)) {
+      if (!selectedMaterial || !validMaterials.includes(selectedMaterial)) {
         setValue('material', CATEGORY_DEFAULT_MATERIAL[selectedCategory], {
           shouldValidate: true,
           shouldDirty: true,
@@ -499,7 +502,8 @@ export const ProductAnalyzerPage: React.FC = () => {
               <Select
                 label="3. Product Material *"
                 options={dynamicMaterialOptions}
-                value={selectedMaterial}
+                placeholder="Choose matching material..."
+                value={selectedMaterial || ''}
                 error={errors.material?.message}
                 helperText="Primary material composition guides safe disassembly and recycling blueprints."
                 name="material"
