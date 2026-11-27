@@ -411,11 +411,27 @@ export async function recordEcoScoreActivity(
     }
   }
 
-  // 2. Persist locally
+  // 2. Persist locally (both EcoScore activities and Dashboard user activities)
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_ECOSCORE_KEY);
     const existing: EcoScoreActivity[] = raw ? JSON.parse(raw) : [];
     localStorage.setItem(LOCAL_STORAGE_ECOSCORE_KEY, JSON.stringify([newActivity, ...existing]));
+
+    // Also sync directly to Dashboard user activities
+    const dashRaw = localStorage.getItem('reusehub_user_activities');
+    const dashExisting = dashRaw ? JSON.parse(dashRaw) : [];
+    const dashboardItem = {
+      id: newActivity.id,
+      actionType: newActivity.activityType,
+      productName: newActivity.productName,
+      category: newActivity.productCategory,
+      co2SavedKg: newActivity.illustrativeCo2Kg,
+      wasteDivertedKg: newActivity.estimatedWeightKg,
+      notes: newActivity.notes,
+      completed: true,
+      createdAt: newActivity.confirmedAt,
+    };
+    localStorage.setItem('reusehub_user_activities', JSON.stringify([dashboardItem, ...dashExisting]));
   } catch (err) {
     console.warn('LocalStorage save error:', err);
   }

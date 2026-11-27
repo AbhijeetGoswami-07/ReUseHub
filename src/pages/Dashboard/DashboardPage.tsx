@@ -504,7 +504,7 @@ export const DashboardPage: React.FC = () => {
           </aside>
 
           {/* Right Main Body: Active Section View */}
-          <main className="lg:col-span-9 space-y-6">
+          <div className="lg:col-span-9 space-y-6">
             {loading ? (
               <div className="space-y-4">
                 <CardSkeleton />
@@ -1332,7 +1332,7 @@ export const DashboardPage: React.FC = () => {
             )}
               </>
             )}
-          </main>
+          </div>
         </div>
       </Container>
 

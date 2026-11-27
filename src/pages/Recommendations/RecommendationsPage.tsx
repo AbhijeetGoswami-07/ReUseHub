@@ -294,7 +294,7 @@ export const RecommendationsPage: React.FC = () => {
                     key={action}
                     type="button"
                     onClick={() => setActiveAction(action)}
-                    className={`relative p-3 rounded-2xl border text-center transition-all flex flex-col items-center justify-center gap-1 select-none ${
+                    className={`relative ${isTop ? 'pt-4 pb-2 px-2 sm:px-3' : 'p-2.5 sm:p-3'} rounded-2xl border text-center transition-all flex flex-col items-center justify-center gap-1 select-none ${
                       isActive
                         ? 'border-brand-primary bg-brand-primary text-white shadow-soft-sm font-bold ring-1 ring-brand-primary'
                         : plan.isApplicable
@@ -304,9 +304,9 @@ export const RecommendationsPage: React.FC = () => {
                   >
                     {isTop && (
                       <span
-                        className={`absolute -top-2.5 left-1/2 -translate-x-1/2 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wider shadow-soft-xs ${
+                        className={`absolute -top-2.5 left-1/2 -translate-x-1/2 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wider shadow-soft-xs z-10 whitespace-nowrap ${
                           isActive
-                            ? 'bg-amber-400 text-brand-primary'
+                            ? 'bg-amber-400 text-brand-primary font-black'
                             : 'bg-brand-primary text-white'
                         }`}
                       >

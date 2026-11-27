@@ -327,7 +327,7 @@ export const AdminPage: React.FC = () => {
         </div>
 
         {/* Tab View Container */}
-        <div className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
+        <div className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
           {loading ? (
             <div className="py-24 text-center space-y-3">
               <div className="w-8 h-8 border-2 border-forest-600 border-t-transparent rounded-full animate-spin mx-auto" />

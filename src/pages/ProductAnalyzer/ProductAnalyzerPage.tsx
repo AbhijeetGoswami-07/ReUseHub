@@ -469,22 +469,22 @@ export const ProductAnalyzerPage: React.FC = () => {
                         setValue('category', cat.id, { shouldValidate: true, shouldDirty: true });
                         setValue('material', CATEGORY_DEFAULT_MATERIAL[cat.id], { shouldValidate: true, shouldDirty: true });
                       }}
-                      className={`flex items-center justify-between p-3 rounded-xl border text-left text-xs transition-all duration-150 select-none ${
+                      className={`flex items-center justify-between px-2.5 py-2.5 sm:p-3 rounded-xl border text-left text-[11px] sm:text-xs transition-all duration-150 select-none ${
                         isSelected
                           ? 'border-brand-primary bg-forest-50/80 text-brand-primary font-bold ring-1 ring-brand-primary shadow-soft-xs'
                           : 'border-brand-border hover:border-brand-secondary/60 text-brand-muted hover:text-brand-text bg-white'
                       }`}
                     >
-                      <div className="flex items-center gap-2.5 truncate">
+                      <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
                         <Icon
-                          className={`w-4 h-4 shrink-0 transition-colors ${
+                          className={`w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 transition-colors ${
                             isSelected ? 'text-brand-secondary' : 'text-brand-muted'
                           }`}
                         />
-                        <span className="truncate">{cat.label}</span>
+                        <span className="truncate sm:whitespace-normal leading-tight">{cat.label}</span>
                       </div>
                       {isSelected && (
-                        <CheckCircle2 className="w-3.5 h-3.5 text-brand-secondary shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-brand-secondary shrink-0 ml-1" />
                       )}
                     </button>
                   );

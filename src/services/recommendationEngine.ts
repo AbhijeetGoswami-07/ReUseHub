@@ -233,6 +233,32 @@ export function generateRecommendations(product: ProductItem): AnalysisResult {
       ],
       nearbyOptions: [{ type: 'repair_cafe', name: 'Downtown Community Mending Circle', distanceKm: 2.1 }],
     };
+  } else if (category === 'clothing' || material.includes('cotton') || material.includes('denim') || material.includes('textile') || material.includes('wool') || material.includes('polyester')) {
+    repairPlan = {
+      id: `rec-repair-${product.id}`,
+      action: 'repair',
+      title: `Garment Seam & Fabric Mending for ${product.title}`,
+      isApplicable: !isUnusable,
+      inapplicableReason: isUnusable ? 'Severe fabric disintegration or chemical rot cannot be mended.' : undefined,
+      safetyRiskLevel: 'none',
+      difficulty: 'easy',
+      estimatedTimeMinutes: 25,
+      estimatedEffort: '20-30 mins',
+      requiredMaterials: ['Sewing Needle & Heavy-Duty Thread', 'Fabric Scissors', 'Color-matched Scrap Fabric or Patch'],
+      safetyNotes: 'Work under good lighting and use a thimble when pushing needles through dense denim seams.',
+      environmentalImpact: {
+        co2KgSaved: Number((baseLCA.co2 * 0.9).toFixed(1)),
+        wasteKgDiverted: baseLCA.waste,
+        waterLitersSaved: baseLCA.water ? Math.round(baseLCA.water * 0.9) : undefined,
+      },
+      summary: `Repair torn seams, reinforce stress points, or apply an internal patch to restore ${product.title} to full wearable condition.`,
+      steps: [
+        { stepNumber: 1, instruction: 'Turn the garment inside out and trim loose threads around the damaged cuff or seam.' },
+        { stepNumber: 2, instruction: 'Align the fabric edges flat and pin securely, placing backing cloth behind any tears.' },
+        { stepNumber: 3, instruction: 'Sew a reinforced straight stitch or zigzag mending stitch across the seam, then knot and press flat with an iron.' },
+      ],
+      nearbyOptions: [{ type: 'repair_cafe', name: 'Community Textile & Garment Repair Café', distanceKm: 1.8 }],
+    };
   } else if (isChair) {
     repairPlan = {
       id: `rec-repair-${product.id}`,

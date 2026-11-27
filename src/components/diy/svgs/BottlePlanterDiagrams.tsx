@@ -6,7 +6,9 @@ const BottleCanvas: React.FC<{
   badgeText: string;
   className?: string;
   children: React.ReactNode;
-}> = ({ title, badgeText, className = 'w-full h-auto', children }) => (
+}> = ({ title, badgeText, className = 'w-full h-auto', children }) => {
+  const pillWidth = Math.max(220, badgeText.length * 7.5 + 24);
+  return (
   <svg
     viewBox="0 0 600 420"
     fill="none"
@@ -33,7 +35,7 @@ const BottleCanvas: React.FC<{
     <rect width="600" height="420" rx="16" fill="url(#craft-grid-bottle)" />
 
     <g transform="translate(24, 20)">
-      <rect width="210" height="26" rx="6" fill="#234B35" />
+      <rect width={pillWidth} height="26" rx="6" fill="#234B35" />
       <text x="12" y="17" fill="#FFFFFF" fontSize="11" fontWeight="700" letterSpacing="0.05em">
         {badgeText}
       </text>
@@ -41,7 +43,8 @@ const BottleCanvas: React.FC<{
 
     {children}
   </svg>
-);
+  );
+};
 
 /**
  * STEP 1: Cut Bottle into Funnel and Reservoir

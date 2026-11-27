@@ -94,32 +94,34 @@ export const StepIllustration: React.FC<StepIllustrationProps> = ({
 }) => {
   // 1. Completed Project Full-View Resolution
   if (isCompletedView) {
-    const id = idea?.id || '';
-    if (id === 'idea-jeans-tote' || id === 'idea-denim-tote' || idea?.category === 'Clothing Upcycling') {
-      return <JeansCompletedToteSvg showLabels={showLabels} className={className} />;
-    }
-    if (id === 'idea-glass-pantry' || id === 'idea-jar') {
-      return <GlassStep5SealingLabelingSvg showLabels={showLabels} className={className} />;
-    }
-    if (id === 'idea-plastic-planter' || id === 'idea-bottle') {
-      return <BottleStep5PlantingReservoirSvg showLabels={showLabels} className={className} />;
-    }
-    if (id === 'idea-cardboard-organizer') {
-      return <CardboardStep4GridAssemblySvg showLabels={showLabels} className={className} />;
-    }
-    if (id === 'idea-pallet-furniture' || id === 'idea-pallet') {
-      return <PalletStep5WeatherproofCushionSvg showLabels={showLabels} className={className} />;
-    }
-    if (id === 'idea-tshirt-macrame' || id === 'idea-tshirt') {
+    const id = (idea?.id || '').toLowerCase();
+    const title = (idea?.projectTitle || '').toLowerCase();
+
+    if (id.includes('tshirt') || id.includes('shirt') || id.includes('yarn') || id.includes('macrame') || title.includes('t-shirt') || title.includes('yarn')) {
       return <TshirtStep4KnotBasketSvg showLabels={showLabels} className={className} />;
     }
-    if (id === 'idea-cast-iron-seasoning') {
+    if (id === 'idea-jeans-tote' || id === 'idea-denim-tote' || id === 'idea-jeans' || title.includes('jeans') || title.includes('denim')) {
+      return <JeansCompletedToteSvg showLabels={showLabels} className={className} />;
+    }
+    if (id === 'idea-glass-pantry' || id === 'idea-jar' || title.includes('glass') || title.includes('jar')) {
+      return <GlassStep5SealingLabelingSvg showLabels={showLabels} className={className} />;
+    }
+    if (id === 'idea-plastic-planter' || id === 'idea-bottle' || title.includes('planter') || title.includes('bottle')) {
+      return <BottleStep5PlantingReservoirSvg showLabels={showLabels} className={className} />;
+    }
+    if (id === 'idea-cardboard-organizer' || title.includes('cardboard') || title.includes('organizer')) {
+      return <CardboardStep4GridAssemblySvg showLabels={showLabels} className={className} />;
+    }
+    if (id === 'idea-pallet-furniture' || id === 'idea-pallet' || title.includes('pallet')) {
+      return <PalletStep5WeatherproofCushionSvg showLabels={showLabels} className={className} />;
+    }
+    if (id === 'idea-cast-iron-seasoning' || title.includes('cast iron') || title.includes('skillet')) {
       return <CastIronStep4PolymerizationBakeSvg showLabels={showLabels} className={className} />;
     }
-    if (id === 'idea-tin-can-caddy') {
+    if (id === 'idea-tin-can-caddy' || title.includes('tin can') || title.includes('caddy')) {
       return <TinCanStep4LeatherHandleSvg showLabels={showLabels} className={className} />;
     }
-    if (id === 'idea-jug-scoops') {
+    if (id === 'idea-jug-scoops' || title.includes('milk jug') || title.includes('scoop')) {
       return <MilkJugStep3ContourCuttingSvg showLabels={showLabels} className={className} />;
     }
     return <JeansCompletedToteSvg showLabels={showLabels} className={className} />;

@@ -37,9 +37,9 @@ export const Navbar: React.FC = () => {
     { name: 'Discover', path: '/discover' },
     { name: 'Analyze Product', path: '/analyzer' },
     { name: 'Marketplace', path: '/marketplace' },
+    { name: 'Community', path: '/community' },
     { name: 'EcoScore', path: '/ecoscore' },
-    { name: 'How It Works', path: '/#how-it-works' },
-    { name: 'About', path: '/#about' },
+    { name: 'Dashboard', path: '/dashboard' },
   ];
 
   return (
@@ -130,12 +130,7 @@ export const Navbar: React.FC = () => {
             </div>
 
             {/* Mobile Menu Toggle */}
-            <div className="flex lg:hidden items-center gap-2">
-              <Link to="/analyzer" className="sm:hidden">
-                <Button variant="primary" size="sm">
-                  Get Started
-                </Button>
-              </Link>
+            <div className="flex lg:hidden items-center gap-1.5 shrink-0">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2 rounded-xl text-brand-text hover:bg-forest-100 focus:outline-none focus:ring-2 focus:ring-brand-primary"

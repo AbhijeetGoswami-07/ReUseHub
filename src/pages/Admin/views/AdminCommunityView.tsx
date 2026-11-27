@@ -179,8 +179,8 @@ export const AdminCommunityView: React.FC<AdminCommunityViewProps> = ({
                       </span>
                     </td>
 
-                    <td className="py-3 px-4 text-dark-subtle text-[11px]">
-                      {new Date(post.createdAt).toLocaleDateString()}
+                    <td className="py-3 px-4 text-dark-subtle text-[11px] whitespace-nowrap">
+                      {isNaN(Date.parse(post.createdAt)) ? post.createdAt : new Date(post.createdAt).toLocaleDateString()}
                     </td>
 
                     <td className="py-3 px-4 text-right">
