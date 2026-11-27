@@ -118,10 +118,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
         aria-hidden="true"
       />
 
-      {/* Card Content */}
-      <div className="relative z-20 h-full flex flex-col justify-between">
-        {children}
-      </div>
+      {children}
     </div>
   );
 };
