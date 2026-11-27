@@ -25,7 +25,7 @@ export const CountUp: React.FC<CountUpProps> = ({
   className = '',
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-40px' });
+  const isInView = useInView(ref, { once: true, margin: '80px' });
   const [value, setValue] = useState(from);
 
   useEffect(() => {
